@@ -2,6 +2,17 @@ import React, { useState } from 'react';
 import { FileText, Search, Filter, Download, Eye, Clock, Shield, Folder, ChevronDown, Star } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 
+type Document = {
+  id: number;
+  type: string;
+  title: string;
+  date: string;
+  size: string;
+  status: string;
+  parties: string[];
+  starred: boolean;
+};
+
 const DocumentStorage = () => {
   const [selectedFolder, setSelectedFolder] = useState('all');
   const [view, setView] = useState('grid');
@@ -15,7 +26,7 @@ const DocumentStorage = () => {
     { id: 'archived', name: 'Archived', count: 2 }
   ];
 
-  const documents = [
+  const documents: Document[] = [
     {
       id: 1,
       type: 'contract',
@@ -75,7 +86,7 @@ const DocumentStorage = () => {
     </div>
   );
 
-  const renderDocumentCard = (doc) => (
+  const renderDocumentCard = (doc: Document) => (
     <div key={doc.id} className="bg-white rounded-xl border hover:shadow-md transition-shadow">
       <div className="p-4">
         <div className="flex items-start justify-between mb-3">
